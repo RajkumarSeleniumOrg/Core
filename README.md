@@ -1,2 +1,2 @@
 # Core
-Core Folder
+Core Folder project is created.
