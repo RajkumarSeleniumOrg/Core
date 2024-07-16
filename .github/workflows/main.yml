@@ -14,5 +14,5 @@ jobs:
       run: |
         curl -X POST -H "Authorization: token ${{ secrets.GIT_TOKEN }}" \
           -H "Accept: application/vnd.github.v3+json" \
-          https://api.github.com/repos/Rajkumar-Gurunathan-Gilead/Project/dispatches \
+          https://api.github.com/repos/RaajGurunathan/Project/dispatches \
           -d '{"event_type":"update_submodule"}'
