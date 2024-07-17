@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Get access token
-      uses: github-actions/get-token@v1
+      uses: github-actions/gettoken@v1
       id: token
       with:
        github_token: ${{secrets.GITHUB_TOKEN}}
