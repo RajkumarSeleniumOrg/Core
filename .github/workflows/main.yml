@@ -13,6 +13,7 @@ jobs:
     - name: Set PAT Token based on Commiter 
       id: set-pat 
       run: |
+        git --init
         COMMIT_AUTHOR=$(git log -1 --pretty=format:'%ae')
         if COMMIT_AUTHOR == "rajkumar.gurunathan90@gmail.com"; then
             echo "::set-output name=pat::${{secrets.GIT_TOKEN}}"
