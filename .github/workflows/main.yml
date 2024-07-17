@@ -14,7 +14,7 @@ jobs:
       uses: github-actions/get-token@v1
       id: token
       with:
-       github_token: ${{secrets.GITHUB_TOKEN)}}
+       github_token: ${{secrets.GITHUB_TOKEN}}
        run: echo "Access token:${{ steps.token.outputs.token }}"
       
     - name: Trigger workflow in main repository
