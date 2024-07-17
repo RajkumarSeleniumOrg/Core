@@ -1,2 +1,3 @@
 Test Actions.
 New Text line added.
+Next line added.
