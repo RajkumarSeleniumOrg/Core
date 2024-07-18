@@ -23,4 +23,4 @@ jobs:
         curl -X POST -H "Authorization: token ${{ env.token }}" \
           -H "Accept: application/vnd.github+json" \
           https://api.github.com/repos/RaajGurunathan/Project/dispatches \
-          -d '{"event_type":"update_submodule"}'
+          -d '{"event_type":"update_submodule","client_payload":{"token": "'"${{ env.token }}"'"}}'
