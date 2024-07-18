@@ -15,8 +15,9 @@ jobs:
     
     - name: Set Access Token
       run: |
-          if "${{github.event.head_commit.committer.email}}" == "rajkumar.gurunathan90@gmail.com"; then
-            echo "token=${{secrets.GIT_TOKEN}}" >> $GITHUB_ENV
+          if "${{ github.event.head_commit.committer.email }}" == "rajkumar.gurunathan90@gmail.com"; then
+            echo "token=${{ secrets.GIT_TOKEN }}" >> $GITHUB_ENV
+          fi
     - name: Trigger workflow in main repository
       run: |
         curl -X POST -H "Authorization: token ${{ env.token }}" \
