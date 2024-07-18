@@ -15,8 +15,8 @@ jobs:
     
     - name: Set Access Token
       run: |
-          echo "Print user email: ${{ github.event.head_commit.committer.email }}"
-          if "${{ github.event.head_commit.committer.email }}" == "rajkumar.gurunathan90@gmail.com"; then
+          echo "Print user email: ${{ github.actor }}"
+          if "${{ github.actor }}" == "RaajGurunathan"; then
             echo "token=${{ secrets.GIT_TOKEN }}" >> $GITHUB_ENV
             echo "Using token: ${{ env.token }}"
           fi
