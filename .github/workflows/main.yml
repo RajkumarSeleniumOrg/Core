@@ -16,7 +16,8 @@ jobs:
     - name: Set Access Token
       run: |
           username="${{ github.actor }}"
-          if username == "RaajGurunathan"; then
+          echo $username
+          if $username == "RaajGurunathan"; then
             echo "token=${{ secrets.GIT_TOKEN }}" >> $GITHUB_ENV
             echo "Using token: ${{ env.token }}"
           fi
