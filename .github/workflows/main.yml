@@ -15,11 +15,8 @@ jobs:
     
     - name: Set Access Token
       run: |
-          username="${{ github.actor }}"
-          echo "User Name is: $username"
-          if [ "$username" = "RaajGurunathan" ]; then
+          if [ "${{ github.actor }}" = "RaajGurunathan" ]; then
             echo "token=${{ secrets.GIT_TOKEN }}" >> $GITHUB_ENV
-            echo "Using token: ${{ env.token }}"
           fi
     - name: Trigger workflow in main repository
       run: |
