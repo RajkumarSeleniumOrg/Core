@@ -36,7 +36,21 @@ jobs:
            
     - name: Trigger workflow in main repository
       run: |
-        values=$(cat projectNames.json | jq -r '.projects[]')
+        file_content=$(cat projectNames.json) || exit 1
+        if [ -z $file_content" ]; then
+         echo "projectNames.json is empty"
+         exit 1
+        else
+         echo "projectNames.json content:$file_content"
+        fi
+
+        echo "$file_content" | jq . #Validate the Json structure
+        
+        values=$(jq -r '.projects[]' projectNames.json) || exit 1
+        if [ -z "$values" ]; then
+         echo "No Projects found in file"
+         exit 1
+        fi
         for value in $values; do
         echo "The Project name is: ${value}"
         done
