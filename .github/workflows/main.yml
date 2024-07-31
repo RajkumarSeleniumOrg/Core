@@ -28,9 +28,18 @@ jobs:
           if [ "${{ github.actor }}" = "${{ env.user_login }}" ]; then
             echo "token=${{ secrets.GIT_TOKEN }}" >> $GITHUB_ENV
           fi
+    - name: Access the Project Details files
+      run: |
+         curl -H "Authorization: token ${{ env.token }}" \
+         -H "Accept:application/vnd.github.v3.raw" \
+         -O \- L "https://api.github.com/repos/RaajGurunathan/NewProject/projectNames.json"
+       
     - name: Trigger workflow in main repository
       run: |
+        values=$(cat projectNames.json | jq -r '.projects[]')
+        for vaue in $values; do
         curl -X POST -H "Authorization: token ${{ env.token }}" \
           -H "Accept: application/vnd.github+json" \
-          https://api.github.com/repos/RaajGurunathan/Project/dispatches \
+          https://api.github.com/repos/RaajGurunathan/$value/dispatches \
           -d '{"event_type":"update_submodule"}'
+        done
