@@ -37,7 +37,7 @@ jobs:
     - name: Trigger workflow in main repository
       run: |
         file_content=$(cat projectNames.json) || exit 1
-        if [ -z $file_content" ]; then
+        if [ -z "$file_content" ]; then
          echo "projectNames.json is empty"
          exit 1
         else
