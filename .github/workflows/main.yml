@@ -40,7 +40,7 @@ jobs:
       run: |
         values=$(cat projectNames.json | jq -r '.projects[]')
         for value in $values; do
-        echo "${value}"
+        echo "The value of project is: ${value}"
         curl -X POST -H "Authorization: token ${{ env.token }}" \
           -H "Accept: application/vnd.github+json" \
           https://api.github.com/repos/RaajGurunathan/${value}/dispatches \
