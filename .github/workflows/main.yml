@@ -30,10 +30,17 @@ jobs:
           fi
     - name: Access the Project Details files
       run: |
-         curl -H "Authorization: token ${{ env.token }}" \
+         curl -v -H "Authorization: token ${{ env.token }}" \
          -H "Accept:application/vnd.github.v3.raw" \
          -O \-L "https://api.github.com/repos/RaajGurunathan/NewProject/contents/blob/main/projectNames.json"
          ls -l 
+         if [ -f projectNames.json ]; then
+         echo "projectNames.json file is exists"
+         cat projectNames.json
+         else 
+         echo "projectNames.json not found"
+         exit 1
+         fi
          file_content=$(cat projectNames.json)
          if [ -z "$file_content" ]; then
          echo "projectNames.json is empty"
