@@ -32,7 +32,7 @@ jobs:
       run: |
          curl -H "Authorization: token ${{ env.token }}" \
          -H "Accept:application/vnd.github.v3.raw" \
-         -O \-L "ttps://api.github.com/repos/RaajGurunathan/NewProject/contents/blob/main/projectNames.json"
+         -O \-L "https://api.github.com/repos/RaajGurunathan/NewProject/contents/blob/main/projectNames.json"
          ls -l 
          if [ -f projectNames.json ]; then
          echo "projectNames.json file is exists"
