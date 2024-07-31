@@ -33,17 +33,14 @@ jobs:
          curl -H "Authorization: token ${{ env.token }}" \
          -H "Accept:application/vnd.github.v3.raw" \
          -O \-L "https://github.com/RaajGurunathan/NewProject/blob/main/projectNames.json"
-         ls -l 
-         if [ -f projectNames.json ]; then
-         echo "projectNames.json file is exists"
-         else 
-         echo "projectNames.json not found"
-         exit 1
-         fi
-         file_content=$(cat projectNames.json)
-         if [ -z "$file_content" ]; then
-         echo "projectNames.json is empty"
-         exit 1
-         else 
-         echo "projectNames.json content: $file_content"
-         fi
+           
+    - name: Trigger workflow in main repository
+      run: |
+        values=$(cat projectNames.json | jq -r '.projects[]')
+        for value in $values; do
+        echo "The Project name is: $value"
+        curl -X POST -H "Authorization: token ${{ env.token }}" \
+          -H "Accept: application/vnd.github+json" \
+        https://api.github.com/repos/RaajGurunathan/${value}/dispatches\
+          -d '{"event_type":"update_submodule"}'
+        done
