@@ -38,5 +38,5 @@ jobs:
       run: |
         values=$(cat projectNames.json | jq -r '.projects[]')
         for value in $values; do
-        echo "The Project name is: $value"
+        echo "The Project name is: ${value}"
         done
