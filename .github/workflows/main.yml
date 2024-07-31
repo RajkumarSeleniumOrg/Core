@@ -32,11 +32,10 @@ jobs:
       run: |
          curl -H "Authorization: token ${{ env.token }}" \
          -H "Accept:application/vnd.github.v3.raw" \
-         -O \-L "https://api.github.com/repos/RaajGurunathan/NewProject/contents/projectNames.json?ref=main"
+         -O \-L "https://api.github.com/repos/RaajGurunathan/NewProject/contents/blob/main/projectNames.json"
     - name: Display Downloaded file contents
       run: | 
        ls -l
-       cat projectNames.json
     - name: Trigger workflow in main repository
       run: |
         values=$(cat projectNames.json | jq -r '.projects[]')
